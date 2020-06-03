@@ -1,0 +1,20 @@
+<main class="main">
+
+  <form action="/search" method="post" class="search-container" id="my_form">
+    <input type="hidden" name="_method" value="get"></input>
+    {{!-- <label for="say">What photos looking for?</label> --}}
+    <input name="photo" value="" id="search-bar">
+    <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"><img class="search-icon"
+        src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+  </form>
+
+  <ul>
+    {{#each data}}
+    <li>
+      <a href="{{this.id}}"><img class="image" src="{{this.urls.small}}" alt=""></a>
+      {{!-- <a href="{{this.id}}">Details</a> --}}
+    </li>
+    {{/each}}
+  </ul>
+
+</main>

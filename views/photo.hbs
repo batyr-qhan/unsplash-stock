@@ -1,0 +1,13 @@
+<main class="main">
+  <img src="{{data.urls.small}}" alt="">
+  <p>Author: <b>{{data.user.name}}</b></p>
+
+  <form action="/{{data.id}}" method="post">
+    <input type="hidden" name="photoURL" value="{{data.urls.small}}"></input>
+    <input type="hidden" name="photoAuthor" value="{{data.user.name}}"></input>
+    <input type="hidden" name="photoId" value="{{data.id}}"></input>
+    <div>
+      <button type="submit" class="button">add to favorite</button>
+    </div>
+  </form>
+</main>
