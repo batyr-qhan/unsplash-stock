@@ -1,7 +1,7 @@
 <main class="main">
 
-  <form action="/search" method="post" class="search-container" id="my_form">
-    <input type="hidden" name="_method" value="get"></input>
+  <form action="/search" method="get" class="search-container" id="my_form">
+    {{!-- <input type="hidden" name="_method" value="get"></input> --}}
     {{!-- <label for="say">What photos looking for?</label> --}}
     <input name="photo" value="" id="search-bar">
     <a href="javascript:{}" onclick="document.getElementById('my_form').submit();"><img class="search-icon"

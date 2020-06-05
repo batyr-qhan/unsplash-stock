@@ -8,7 +8,7 @@ const Unsplash = require('unsplash-js').default;
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://tenderUser:b.-6EEHk!7obdBxTshEP@gis-cluster-kuoil.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://localhost:27017/photo-unsplash', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

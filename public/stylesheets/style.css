@@ -17,7 +17,7 @@ a {
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  padding: 1.15rem 1rem;
+  /* padding: 1.15rem 1rem; */
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.035);
   background-color: #fff;
   margin-bottom: 50px;
@@ -84,10 +84,25 @@ ul {
   flex-direction: row;
   flex-wrap: wrap;
   list-style-type: none;
+  padding: 0;
 }
 
 li {
   margin: 10px;
+}
+
+.historyList {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.historyList li {
+  width: 30vw;
+  background-color: seashell;
+  padding: 10px 0;
+  text-align: center;
 }
 
 .image:hover {
@@ -103,7 +118,7 @@ li {
   background-color: transparent;
   border: solid 1px #66f;
   color: #66f;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   cursor: pointer;
   transition: all 0.1s ease-in-out;

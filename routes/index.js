@@ -5,6 +5,8 @@ const { toJson } = require('unsplash-js');
 const Unsplash = require('unsplash-js').default;
 
 const Photo = require('../models/photoSchema');
+const Url = require('../models/urlSchema');
+
 global.fetch = fetch;
 
 const unsplash = new Unsplash({
@@ -43,10 +45,20 @@ router.post('/:id', (req, res, next) => {
 router.get('/search', (req, res, next) => {
   // console.log(req.body.photo);
   unsplash.search
-    .photos(req.body.photo, 1, 10, { orientation: 'portrait' })
+    .photos(req.query.photo, 1, 10, { orientation: 'portrait' })
     .then(toJson)
     .then((json) => {
-      // console.log(json);
+      Url.findOne({ keyWord: req.query.photo }).then((item) => {
+        if (item === null) {
+          const url = new Url({
+            url: `http://localhost:3000/search?photo=${req.query.photo}`,
+            keyWord: req.query.photo,
+          });
+          url.save();
+        } else {
+          console.log('found');
+        }
+      });
       res.render('search', { data: json });
     });
 });
@@ -58,6 +70,27 @@ router.get('/favorite', async (req, res, next) => {
   res.render('favorite', { title: 'Express', data: allPhotos });
 });
 
+router.delete('/favorite', async (req, res) => {
+  await Photo.deleteOne({ _id: req.body.photoToDelete }, (err, result) => {
+    if (err) return console.log(err);
+    res.redirect('/favorite');
+  });
+});
+
+router.get('/history', async (req, res, next) => {
+  const allUrls = await Url.find({});
+  // res.send(allData)
+  console.log(allUrls);
+  res.render('history', { title: 'Express', data: allUrls });
+});
+
+router.delete('/history', async (req, res) => {
+  await Url.remove({}, (err, result) => {
+    if (err) return console.log(err);
+    res.redirect('/history');
+  });
+});
+
 router.get('/:id', (req, res) => {
   unsplash.photos
     .getPhoto(req.params.id)
@@ -65,6 +98,13 @@ router.get('/:id', (req, res) => {
     .then((json) => {
       res.render('photo', { data: json });
     });
+});
+
+router.get('/history', async (req, res, next) => {
+  const allUrls = await Url.find({});
+  // res.send(allData)
+  console.log(allUrls);
+  res.render('history', { title: 'Express', data: allUrls });
 });
 
 module.exports = router;

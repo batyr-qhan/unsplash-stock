@@ -2,6 +2,11 @@
   {{#each data}}
   <li>
     <img class="image" src="{{this.photoURL}}" alt="">
+    <form action="/favorite" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input name="photoToDelete" value="{{this._id}}" type="hidden">
+      <input type="submit" value="Delete">
+    </form>
     {{!-- <p>author: {{this.author}}</p> --}}
   </li>
   {{/each}}

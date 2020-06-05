@@ -1,0 +1,30 @@
+<main class="main">
+  <h2>Search History</h2>
+
+  <ul class="historyList">
+    {{#each data}}
+    <li>
+
+      <a href="{{this.url}}">{{this.keyWord}}</a>
+
+      {{!-- <img class="image" src="{{this.photoURL}}" alt="">
+    <form action="/favorite" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input name="photoToDelete" value="{{this._id}}" type="hidden">
+      <input type="submit" value="Delete">
+    </form> --}}
+      {{!-- <p>author: {{this.author}}</p> --}}
+    </li>
+    {{/each}}
+  </ul>
+
+  <form action="/history" method="post">
+    <input type="hidden" name="_method" value="delete"></input>
+    {{!-- <input type="hidden" name="photoURL" value="{{data.urls.small}}"></input>
+    <input type="hidden" name="photoAuthor" value="{{data.user.name}}"></input>
+    <input type="hidden" name="photoId" value="{{data.id}}"></input> --}}
+    <div>
+      <button type="submit" class="button">clear history</button>
+    </div>
+  </form>
+</main>
